@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,10 +10,13 @@ public class animalController : MonoBehaviour
 
     public string foodTag;
 
+    gameManager _gm;
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        _gm = GameObject.FindGameObjectWithTag("gameManager").GetComponent<gameManager>();
     }
 
     // Update is called once per frame
@@ -29,6 +33,8 @@ public class animalController : MonoBehaviour
         if(other.tag == foodTag)
         {
             Destroy(gameObject);
+            Destroy(other.gameObject);
+            _gm.score++;
         }
     }
 }

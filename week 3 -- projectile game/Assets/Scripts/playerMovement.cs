@@ -25,6 +25,15 @@ public class playerMovement : MonoBehaviour
 
     private int projectileSelection = 0;
 
+    private int lives = 3;
+    private bool cooldownActive = false;
+    private float cooldownTimer = 0;
+
+
+    public GameObject heart1;
+    public GameObject heart2;
+    public GameObject heart3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -112,13 +121,47 @@ public class playerMovement : MonoBehaviour
         //spawns a projectile when space is pressed
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 spawnPos = transform.position + new Vector3(0,2,0);
+            Vector3 spawnPos = transform.position + new Vector3(0, 2, 0);
             GameObject tempObject = Instantiate(projectiles[projectileSelection], spawnPos, transform.rotation, projectileParent);
             //destroys the projectile after a certain amount of time
             Destroy(tempObject, 3);
         }
-    }
 
+        //---------------CONTROLS THE HEART UI---------------
+        if (lives < 3)
+        {
+            heart3.SetActive(false);
+        }
+        if (lives < 2)
+        {
+            heart2.SetActive(false);
+        }
+        if (lives < 1)
+        {
+            heart1.SetActive(false);
+        }
+
+
+        //---------------GAME OVER---------------
+        if (lives == 0)
+        {
+            Time.timeScale = 0f;
+            Greying.SetActive(true);
+            GameOver.SetActive(true);
+        }
+
+        //---------------DAMAGE COOLDOWN TIMER---------------
+        if (cooldownActive == true)
+        {
+            cooldownTimer += Time.deltaTime;
+            if (cooldownTimer > 3)
+            {
+                cooldownActive = false;
+                cooldownTimer = 0;
+                _animator.SetBool("isDamaged", false);
+            }
+        }
+    }
     //---------------CALCULATES ANGLES BETWEEN VECTORS---------------
     float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
     {
@@ -127,11 +170,11 @@ public class playerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Dog" || other.tag == "Fox" || other.tag == "Moose" || other.tag == "Horse")
+        if ((other.tag == "Dog" || other.tag == "Fox" || other.tag == "Moose" || other.tag == "Horse") && cooldownActive == false)
         {
-            Time.timeScale = 0f;
-            Greying.SetActive(true);
-            GameOver.SetActive(true);
+            lives--;
+            _animator.SetBool("isDamaged", true);
+            cooldownActive = true;
         }
     }
 }
