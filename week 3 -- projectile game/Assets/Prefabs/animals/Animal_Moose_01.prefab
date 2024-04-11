@@ -590,6 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodTag: Apple
+  SFXtag: mooseSFX
 --- !u!195 &7640642413246883711
 NavMeshAgent:
   m_ObjectHideFlags: 0

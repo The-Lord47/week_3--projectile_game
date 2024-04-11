@@ -13,6 +13,11 @@ TagManager:
   - Moose
   - Dog
   - gameManager
+  - foxSFX
+  - horseSFX
+  - dogSFX
+  - mooseSFX
+  - damageSFX
   layers:
   - Default
   - TransparentFX

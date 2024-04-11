@@ -2173,6 +2173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodTag: Bone
+  SFXtag: dogSFX
 --- !u!195 &728510792588465277
 NavMeshAgent:
   m_ObjectHideFlags: 0

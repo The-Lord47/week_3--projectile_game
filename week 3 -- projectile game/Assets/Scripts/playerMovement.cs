@@ -34,10 +34,14 @@ public class playerMovement : MonoBehaviour
     public GameObject heart2;
     public GameObject heart3;
 
+
+    GameObject damageSFX;
+
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
+        damageSFX = GameObject.FindGameObjectWithTag("damageSFX");
     }
 
     // Update is called once per frame
@@ -123,8 +127,9 @@ public class playerMovement : MonoBehaviour
         {
             Vector3 spawnPos = transform.position + new Vector3(0, 2, 0);
             GameObject tempObject = Instantiate(projectiles[projectileSelection], spawnPos, transform.rotation, projectileParent);
+            GetComponent<AudioSource>().Play();
             //destroys the projectile after a certain amount of time
-            Destroy(tempObject, 3);
+            Destroy(tempObject, 2);
         }
 
         //---------------CONTROLS THE HEART UI---------------
@@ -173,6 +178,7 @@ public class playerMovement : MonoBehaviour
         if ((other.tag == "Dog" || other.tag == "Fox" || other.tag == "Moose" || other.tag == "Horse") && cooldownActive == false)
         {
             lives--;
+            damageSFX.GetComponent<AudioSource>().Play();
             _animator.SetBool("isDamaged", true);
             cooldownActive = true;
         }

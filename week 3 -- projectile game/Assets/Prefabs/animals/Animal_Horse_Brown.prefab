@@ -997,6 +997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodTag: Carrot
+  SFXtag: horseSFX
 --- !u!195 &3626729580005532316
 NavMeshAgent:
   m_ObjectHideFlags: 0

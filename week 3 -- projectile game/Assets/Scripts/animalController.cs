@@ -12,11 +12,15 @@ public class animalController : MonoBehaviour
 
     gameManager _gm;
 
+    GameObject SFX;
+    public string SFXtag;
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         _gm = GameObject.FindGameObjectWithTag("gameManager").GetComponent<gameManager>();
+        SFX = GameObject.FindGameObjectWithTag(SFXtag);
     }
 
     // Update is called once per frame
@@ -32,6 +36,7 @@ public class animalController : MonoBehaviour
     {
         if(other.tag == foodTag)
         {
+            SFX.GetComponent<AudioSource>().Play();
             Destroy(gameObject);
             Destroy(other.gameObject);
             _gm.score++;

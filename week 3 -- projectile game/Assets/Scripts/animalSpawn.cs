@@ -22,27 +22,23 @@ public class animalSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        InvokeRepeating("SpawnAnimals", 1, spawnTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
 
-        if(timer > spawnTime)
-        {
-            xCoord = Random.Range(xspawnBoundary, xspawnBoundary + xspawnRange) * (Random.Range(0, 2) * 2 - 1);
-            zCoord = Random.Range(zspawnBoundary, zspawnBoundary + zspawnRange) * (Random.Range(0, 2) * 2 - 1);
-
-            animalSelection = Random.Range(0, 4);
-
-            Instantiate(animals[animalSelection], new Vector3(xCoord, 0, zCoord), new Quaternion(0, 0, 0, 0), projectileParent); 
-
-            timer = 0;
-        }
-        
-
-        
     }
+
+    void SpawnAnimals()
+    {
+        xCoord = Random.Range(xspawnBoundary, xspawnBoundary + xspawnRange) * (Random.Range(0, 2) * 2 - 1);
+        zCoord = Random.Range(zspawnBoundary, zspawnBoundary + zspawnRange) * (Random.Range(0, 2) * 2 - 1);
+
+        animalSelection = Random.Range(0, 4);
+
+        Instantiate(animals[animalSelection], new Vector3(xCoord, 0, zCoord), new Quaternion(0, 0, 0, 0), projectileParent);
+    }
+
 }

@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodTag: Steak
+  SFXtag: foxSFX
 --- !u!195 &3452228265632494971
 NavMeshAgent:
   m_ObjectHideFlags: 0
