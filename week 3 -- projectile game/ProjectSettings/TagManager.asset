@@ -18,6 +18,8 @@ TagManager:
   - dogSFX
   - mooseSFX
   - damageSFX
+  - Ball
+  - GameController2
   layers:
   - Default
   - TransparentFX
